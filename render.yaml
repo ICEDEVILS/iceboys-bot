@@ -1,15 +1,67 @@
 services:
-  - type: worker
+  - type: web
     name: iceboys-bot
-    env: python
+    runtime: python
+    plan: standard
     buildCommand: pip install -r requirements.txt
-    startCommand: python iceboys_monetizer.py
+    startCommand: python -m bot.main
     envVars:
-      - key: TELEGRAM_BOT_TOKEN
+      - key: BOT_TOKEN
         sync: false
-      - key: TREASURY_WALLET_ADDR
-        sync: false
-      - key: ALCHEMY_API_URL
-        sync: false
+      - key: ADMIN_ID
+        value: "8232197912"
       - key: CHANNEL_ID
+        value: "-1003952089014"
+      - key: SOLANA_RPC
         sync: false
+      - key: HELIUS_API_KEY
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: iceboys-db
+          property: connectionString
+      - key: PAYMENT_WALLET
+        sync: false
+      - key: JUPITER_API_KEY
+        sync: false
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+    healthCheckPath: /health
+    autoDeploy: true
+
+  - type: worker
+    name: iceboys-monitor
+    runtime: python
+    plan: standard
+    buildCommand: pip install -r requirements.txt
+    startCommand: python monitor.py
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: iceboys-db
+          property: connectionString
+      - key: SOLANA_RPC
+        sync: false
+      - key: HELIUS_API_KEY
+        sync: false
+
+  - type: worker
+    name: iceboys-autopilot
+    runtime: python
+    plan: standard
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m bot.trading
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: iceboys-db
+          property: connectionString
+      - key: SOLANA_RPC
+        sync: false
+      - key: WALLET_PRIVATE_KEY
+        sync: false
+
+databases:
+  - name: iceboys-db
+    plan: starter
+    postgresMajorVersion: "15"

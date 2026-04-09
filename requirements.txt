@@ -1,4 +1,32 @@
-pyTelegramBotAPI
-web3
-python-dotenv
-flask
+# ICEBOYS Alpha Bot - Requirements
+# Python 3.10+
+
+# Core
+python-telegram-bot==20.7
+python-dotenv==1.0.0
+
+# Solana
+solana==0.30.2
+solders==0.20.0
+anchorpy==0.18.0
+
+# Database
+asyncpg==0.29.0
+psycopg2-binary==2.9.9
+
+# HTTP & API
+aiohttp==3.9.1
+requests==2.31.0
+websockets==12.0
+
+# Data & Utils
+pandas==2.1.4
+numpy==1.26.3
+pydantic==2.5.3
+
+# Monitoring
+prometheus-client==0.19.0
+sentry-sdk==1.39.2
+
+# Security
+cryptography==41.0.8

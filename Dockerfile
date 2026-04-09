@@ -1,28 +1,22 @@
-# Use a lightweight Python image
-FROM python:3.12-slim
+FROM python:3.11-slim
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-
-# Set working directory
 WORKDIR /app
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    build-essential \
+    gcc \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy project files
+# Copy requirements
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application
 COPY . .
 
-# Install Python dependencies
-RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+# Expose port for webhooks
+EXPOSE 8000
 
-# Expose the port required by Render
-EXPOSE 5000
-
-# Start the bot
-CMD ["python", "iceboys_monetizer.py"]
+# Run the bot
+CMD ["python", "-m", "bot.main"]
