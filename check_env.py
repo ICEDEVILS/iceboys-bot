@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-ICEBOYS SIMPLE CHECKER - Run this before deploying
-Verifies .env and file structure without heavy dependencies
+ICEBOYS ENVIRONMENT CHECKER
+Run this in Termux: python check_env.py
 """
 
 import os
@@ -64,29 +64,24 @@ def check_env():
             print(f"❌ {file} MISSING")
             all_good = False
     
-    print("\n📋 CHECKING TELEGRAM CONFIG:")
+    print("\n📋 TELEGRAM CONFIG:")
     if env_vars.get('ADMIN_ID') == '8232197912':
-        print("✅ Admin ID correct (Mex Robert)")
+        print("✅ Admin: Mex Robert (8232197912)")
     if env_vars.get('CHANNEL_ID') == '-1003952089014':
-        print("✅ Channel ID correct (@MexRober)")
+        print("✅ Channel: @MexRober (-1003952089014)")
     
-    print("\n📋 CHECKING MONETIZATION:")
+    print("\n📋 MONETIZATION:")
     print(f"💰 Basic: ${env_vars.get('SUBSCRIPTION_BASIC_PRICE', 'NOT SET')}/month")
     print(f"💰 Premium: ${env_vars.get('SUBSCRIPTION_PREMIUM_PRICE', 'NOT SET')}/month")
     print(f"💰 Whale: ${env_vars.get('SUBSCRIPTION_WHALE_PRICE', 'NOT SET')}/month")
     
-    whales = env_vars.get('TRACKED_WHALES', '')
-    if whales:
-        whale_list = [w.strip() for w in whales.split(',') if w.strip()]
-        print(f"\n🐋 Tracking {len(whale_list)} whale wallet(s)")
-    
     print("\n" + "="*60)
     if all_good:
-        print("🚀 ALL CHECKS PASSED! READY TO DEPLOY!")
+        print("🚀 ALL CHECKS PASSED!")
         print("\n📋 RENDER START COMMANDS:")
         print("   Web Service:    python -m bot.main")
-        print("   Monitor Worker: python monitor.py")  
-        print("   Trading Worker: python -m bot.trading")
+        print("   Monitor Worker: python monitor.py")
+        print("   Trading Worker: python -m bot.trading (optional)")
         print("\n📋 DEPLOY NOW:")
         print("1. git add . && git commit -m 'Production ready'")
         print("2. git push origin main")
