@@ -1,0 +1,15 @@
+services:
+  - type: worker
+    name: iceboys-bot
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python iceboys_monetizer.py
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TREASURY_WALLET_ADDR
+        sync: false
+      - key: ALCHEMY_API_URL
+        sync: false
+      - key: CHANNEL_ID
+        sync: false

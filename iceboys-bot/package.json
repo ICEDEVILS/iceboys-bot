@@ -1,0 +1,21 @@
+{
+  "name": "iceboys",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "compile": "hardhat compile",
+    "deploy:bsc": "hardhat run scripts/deploy.js --network bsc",
+    "deploy:test": "hardhat run scripts/deploy.js --network bsctestnet",
+    "bot": "node bot/auto_sweep.js"
+  },
+  "dependencies": {
+    "dotenv": "16.4.5",
+    "ethers": "6.12.1",
+    "node-telegram-bot-api": "0.66.0"
+  },
+  "devDependencies": {
+    "hardhat": "2.22.10",
+    "@nomicfoundation/hardhat-ethers": "3.0.6"
+  }
+}
