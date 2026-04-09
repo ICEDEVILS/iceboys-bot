@@ -1,0 +1,28 @@
+# Environment variables
+.env
+
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node.js
+node_modules/
+
+# Build artifacts
+dist/
+build/
+
+# Misc
+*.sqlite3
+*.db
