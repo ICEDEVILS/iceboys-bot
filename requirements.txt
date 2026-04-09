@@ -1,3 +1,4 @@
 pyTelegramBotAPI
 web3
 python-dotenv
+flask

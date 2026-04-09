@@ -1,28 +1,21 @@
 # Environment variables
 .env
 
-# Python
+# Python virtual environment
 venv/
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 
-# Logs
+# Logs and databases
 *.log
-logs/
+*.db
+*.sqlite3
+
+# Node.js dependencies
+node_modules/
 
 # OS files
 .DS_Store
 Thumbs.db
-
-# Node.js
-node_modules/
-
-# Build artifacts
-dist/
-build/
-
-# Misc
-*.sqlite3
-*.db
