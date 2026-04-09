@@ -3,7 +3,7 @@ services:
     name: iceboys-bot
     runtime: python
     plan: standard
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install --upgrade pip setuptools wheel && pip install -r requirements.txt
     startCommand: python -m bot.main
     envVars:
       - key: BOT_TOKEN
@@ -33,7 +33,7 @@ services:
     name: iceboys-monitor
     runtime: python
     plan: standard
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install --upgrade pip setuptools wheel && pip install -r requirements.txt
     startCommand: python monitor.py
     envVars:
       - key: DATABASE_URL
@@ -49,7 +49,7 @@ services:
     name: iceboys-autopilot
     runtime: python
     plan: standard
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install --upgrade pip setuptools wheel && pip install -r requirements.txt
     startCommand: python -m bot.trading
     envVars:
       - key: DATABASE_URL
